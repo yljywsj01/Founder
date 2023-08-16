@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>失物招領</title>
+    </head>
+    <body>
+
+<h1>我找到了遺失物</h1>
+
+    <form method="post" enctype="multipart/form-data" action="upload.php">
+        <label for="fname">請上傳遺失物照片：</label><br>
+        <input type="file" name="my_file"><br><br>
+        <label for="fname">你在哪裡找到此遺失物：</label><br>
+        <input type="text" name="where" value="1301A"><br><br>
+
+        <label for="fname">你最後把物品放在哪呢：</label><br>
+        <input type="text" name="final" value="若無移動 輸入原位即可"><br><br>
+
+        <div>
+        <label for="fname">請選擇遺失物類別：</label><br>
+        <!-- 這是類別 -->
+        <input type="radio" id="證件" name="item" value="1">
+        <label for="證件">證件</label><br>
+        <input type="radio" id="衣服" name="item" value="2">
+        <label for="衣服">衣服</label><br>
+        <input type="radio" id="雨傘" name="item" value="3">
+        <label for="雨傘">雨傘</label><br>
+        <input type="radio" id="水壺" name="item" value="4">
+        <label for="水壺">水壺</label><br>
+        <input type="radio" id="其他" name="item" value="5">
+        <label for="其他">其他</label><br><br>
+        </div>
+        
+
+        <input type="submit" value="Upload">
+    </form>
+
+    </body>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyAfmcyXf9pfBdQkB6tdSFU_S6iMqj4yUkw",
+          authDomain: "find-420a9.firebaseapp.com",
+          projectId: "find-420a9",
+          storageBucket: "find-420a9.appspot.com",
+          messagingSenderId: "1055070410329",
+          appId: "1:1055070410329:web:910f824bcdae933b120348",
+          measurementId: "G-EDJ372CEFM"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        var db = firebase.database();
+
+        var path = "photo";
+        db.ref(`/${path}`)
+
+        .set(data)
+        db.ref("/photo/umbrella").set({
+            umbrella: pink
+        })
+        .then(function () {
+            alert("建立成功");
+        }).catch(function () {
+            alert("伺服器發生錯誤，請稍後再試");
+        });
+      </script>
+</html>

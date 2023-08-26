@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>失物招領</title>
+    <style>
+        .image-container {
+            display: inline-block;
+            text-align: center;
+            margin: 10px;
+        }
+
+        .image-container img {
+            max-width: 500px;
+            max-height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Which is your cloth?</h1>
+    <div class="row" id="imageContainer">
+        <!-- 這裡會透過 JavaScript 動態加入資料 -->
+    </div>
+
+    <script>
+        // 讀取資料並加入到 HTML 中
+        fetch('cloth.php')
+            .then(response => response.json())
+            .then(data => {
+                const imageContainer = document.getElementById('imageContainer');
+                data.forEach(item => {
+                    const container = document.createElement('div');
+                    container.className = 'image-container';
+                    const img = document.createElement('img');
+                    img.src = item.item_picture;
+                    img.alt = item.item_name;
+                    const where = document.createElement('div');
+                    where.textContent = '遺失處: ' + item.item_where;
+                    const final = document.createElement('div');
+                    final.textContent = '最後放置於: ' + item.item_final;
+                    container.appendChild(img);
+                    container.appendChild(where);
+                    container.appendChild(final);
+                    imageContainer.appendChild(container);
+                });
+            })
+            .catch(error => console.error('讀取資料時發生錯誤：', error));
+    </script>
+</body>
+</html>
